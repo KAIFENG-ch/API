@@ -49,7 +49,7 @@ func main()  {
 		v1.GET("/status/:status/:page",Query.Status)
 		v1.GET("/content/:keyword/:page",Query.KeyWord)
 	}
-	err := r.Run(":8080")
+	err := r.Run(":8000")
 	if err != nil {
 		return
 	}
