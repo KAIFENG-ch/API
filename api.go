@@ -40,14 +40,14 @@ func main()  {
 	v1 := r.Group("/api/v1/todo")
 	{
 		v1.POST("/", Add.Add)
-		v1.DELETE("/:id", Delete.One)
-		v1.DELETE("/status/:status", Delete.Status)
+		v1.DELETE("/id", Delete.One)
+		v1.DELETE("/status", Delete.Status)
 		v1.DELETE("/all", Delete.All)
-		v1.PUT("/one/:id", Update.One)
-		v1.PUT("/all/:status", Update.All)
-		v1.GET("/all/:page",Query.All)
-		v1.GET("/status/:status/:page",Query.Status)
-		v1.GET("/content/:keyword/:page",Query.KeyWord)
+		v1.PUT("/one", Update.One)
+		v1.PUT("/all", Update.All)
+		v1.GET("/all",Query.All)
+		v1.GET("/status",Query.Status)
+		v1.GET("/content",Query.KeyWord)
 	}
 	err := r.Run(":8000")
 	if err != nil {
