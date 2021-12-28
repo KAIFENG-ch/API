@@ -43,7 +43,7 @@ func All(c *gin.Context) {
 	Dbs.Find(&queryData)
 	var total =len(queryData)
 	pageNum := total / pageSize
-	page,_ := strconv.Atoi(c.Param("page"))
+	page,_ := strconv.Atoi(c.PostForm("page"))
 	if page - 1 > pageNum{
 		c.JSON(http.StatusNotFound,gin.H{
 			"status": http.StatusNotFound,
@@ -89,11 +89,11 @@ func All(c *gin.Context) {
 
 func Status(c *gin.Context)  {
 	var queryData []items
-	status := c.Param("status")
+	status := c.PostForm("status")
 	Dbs.Find(&queryData,"status = ?", status)
 	var total =len(queryData)
 	pageNum := total / pageSize
-	page,_ := strconv.Atoi(c.Param("page"))
+	page,_ := strconv.Atoi(c.PostForm("page"))
 	if page - 1 > pageNum{
 		c.JSON(http.StatusNotFound,gin.H{
 			"status": http.StatusNotFound,
@@ -139,11 +139,11 @@ func Status(c *gin.Context)  {
 
 func KeyWord(c *gin.Context)  {
 	var queryData []items
-	keyWords := c.Param("keyword")
+	keyWords := c.PostForm("keyword")
 	Dbs.Where("content LIKE ?", "%"+keyWords+"%").Find(&queryData)
 	var total =len(queryData)
 	pageNum := total / pageSize
-	page,_ := strconv.Atoi(c.Param("page"))
+	page,_ := strconv.Atoi(c.PostForm("page"))
 	if page - 1 > pageNum{
 		c.JSON(http.StatusNotFound,gin.H{
 			"status": http.StatusNotFound,
