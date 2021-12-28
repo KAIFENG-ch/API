@@ -85,7 +85,7 @@ func One(c *gin.Context)  {
 
 func All(c *gin.Context)  {
 	var updateData []items
-	status := c.Param("status")
+	status := c.PostForm("status")
 	Dbs.Find(&updateData,"status = ?", status)
 	if len(updateData) == 0{
 		c.JSON(http.StatusNotFound,gin.H{
