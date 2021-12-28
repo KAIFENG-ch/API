@@ -59,7 +59,7 @@ func One(c *gin.Context)  {
 				"status": deleteData.Status,
 				"created_time": deleteData.CreatedAt,
 				"start_time": deleteData.UpdatedAt,
-				"end_time": 0,
+				"end_time": time.Now(),
 			},
 			"total": 1,
 		},
