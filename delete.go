@@ -38,7 +38,7 @@ func init()  {
 
 func One(c *gin.Context)  {
 	var deleteData items
-	deleteId := c.Param("id")
+	deleteId := c.PostForm("id")
 	Dbs.First(&deleteData, deleteId)
 	if deleteData.ID == 0{
 		c.JSON(http.StatusNotFound,gin.H{
@@ -70,7 +70,7 @@ func One(c *gin.Context)  {
 
 func Status(c *gin.Context)  {
 	var delData []items
-	delStatus := c.Param("status")
+	delStatus := c.PostForm("status")
 	Dbs.Find(&delData,"status = ?", delStatus)
 	if len(delData) <= 0{
 		c.JSON(http.StatusOK,gin.H{
