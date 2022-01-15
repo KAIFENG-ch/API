@@ -112,6 +112,7 @@ func Refresh(c *gin.Context)  {
 			"msg": "无法访问页面",
 			"error": "",
 		})
+		return
 	}
 	tokenStr := cookie.Value
 	claim := &Claims{}
@@ -130,9 +131,14 @@ func Refresh(c *gin.Context)  {
 		})
 		return
 	}
-	if token.Valid{
+	if !token.Valid{
 		c.JSON(http.StatusUnauthorized,gin.H{
 			"status": http.StatusUnauthorized,
+		})
+	}
+	if time.Unix(claim.ExpiresAt,0).Sub(time.Now()) > 30 * time.Second{
+		c.JSON(http.StatusBadRequest,gin.H{
+			"status": http.StatusBadRequest,
 		})
 	}
 	expirationTime := time.Now().Add(5* time.Minute)
