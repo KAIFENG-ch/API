@@ -49,7 +49,7 @@ func main()  {
 		v1.GET("/all",Query.All)
 		v1.GET("/status",Query.Status)
 		v1.GET("/content",Query.KeyWord)
-		v1.POST("/Sign",Register.Sign)
+		v1.POST("/sign",Register.Sign)
 		v1.POST("/welcome",Register.Welcome)
 		v1.POST("refresh",Register.Refresh)
 	}
